@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!--配置User对象创建-->
+        <bean id="user" class="com.xingtaizhiye.spring5.User"></bean>
+        <bean id="book" class="com.xingtaizhiye.spring5.Book">
+                <!--使用property完成属性注入-->
+                <!--name:类里面属性名称-->
+                <!--value:向属性注入的值-->
+<!--                <property name="bname" value="红楼梦"></property>-->
+                <property name="bauthor" value="曹雪芹"></property>
+<!--                <property name="bname">-->
+<!--                        <null></null>-->
+<!--                </property>-->
+                <property name="bname">
+                        <value><![CDATA[<<三国演义>>]]></value>
+                </property>
+        </bean>
+
+        <bean id="orders" class="com.xingtaizhiye.spring5.Orders">
+                <constructor-arg name="oname" value="abc"></constructor-arg>
+                <constructor-arg name="address" value="China"></constructor-arg>
+        </bean>
+
+        <bean id="userService" class="com.xingtaizhiye.spring5.service.UserService">
+                <!-- 注入userDao对象
+                        name属性：类里面属性名称
+                        ref属性：创建userDao对象bean标签id值
+                 -->
+                <property name="userDao" ref="userDaoImpl"></property>
+        </bean>
+
+        <bean id="userDaoImpl" class="com.xingtaizhiye.spring5.dao.UserDaoImpl"></bean>
+
+        <bean id="emp" class="com.xingtaizhiye.spring5.bean.Emp">
+                <property name="ename" value="小红"/>
+                <property name="gender" value="女"/>
+                <property name="dept">
+                        <bean id="dept" class="com.xingtaizhiye.spring5.bean.Department">
+                                <property name="dname" value="财会部"/>
+                        </bean>
+                </property>
+        </bean>
+
+        <bean id="student" class="com.xingtaizhiye.spring5.bean.Student">
+                <!--①、注入数组-->
+                <property name="books">
+                        <array>
+                                <value>Java</value>
+                                <value>Android</value>
+                                <value>JavaWeb</value>
+                                <value>J2EE</value>
+                        </array>
+                </property>
+                <!--②、注入list集合-->
+                <property name="hobbys">
+                        <list>
+                                <value>唱歌</value>
+                                <value>跳舞</value>
+                                <value>足球</value>
+                        </list>
+                </property>
+                <!--③、注入map集合-->
+                <property name="card">
+                        <map>
+                                <entry key="身份证" value="123456"/>
+                                <entry key="银行卡" value="456789123132"/>
+                        </map>
+                </property>
+                <!--④、注入set集合-->
+                <property name="games">
+                        <set>
+                                <value>原神</value>
+                                <value>王者荣耀</value>
+                                <value>DOTA</value>
+                        </set>
+                </property>
+                <!--⑤、注入Properties-->
+                <property name="info">
+                        <props>
+                                <prop key="学号">001</prop>
+                                <prop key="班级">移动2103，2104</prop>
+                        </props>
+                </property>
+        </bean>
+
+        <bean id="mybean" class="com.xingtaizhiye.spring5.factorybean.MyBean">
+
+        </bean>
+</beans>
