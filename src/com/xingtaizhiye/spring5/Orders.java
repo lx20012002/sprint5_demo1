@@ -10,6 +10,7 @@ public class Orders {
         System.out.println("hello git test3 by hot-fix");
         System.out.println("hello git test4 by hot-fix");
         System.out.println("hello git test5 by master");
+        System.out.println("hello git test5 by GitHub remote");
     }
 
     public Orders(String oname,String address){
